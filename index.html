@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | 8BitEvilReturns</title>
   </head>
-  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+  <body style="text-align: center; padding: 0; border: 0; margin: 0; overflow: hidden;">
     <canvas id="unity-canvas" width=480 height=852 style="width: 480px; height: 852px; background: #231F20"></canvas>
     <script src="Build/8BitEvilReturnsBuild.loader.js"></script>
     <script>
@@ -33,9 +33,7 @@
         const height = window.innerHeight;
         canvas.style.height = `${height}px`;
         canvas.style.width = `${height * (9 / 16)}px`;
-        canvas.style.top = "0";
-        canvas.style.left = "0";
-        canvas.style.zIndex = "1000";
+        canvas.style.position = "block";
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
