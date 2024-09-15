@@ -28,6 +28,14 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
+      } else {
+        var canvas = document.querySelector("#unity-canvas");
+        const height = window.innerHeight;
+        canvas.style.height = `${height}px`;
+        canvas.style.width = `${height * (9 / 16)}px`;
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.zIndex = "1000";
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
