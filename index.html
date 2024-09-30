@@ -13,7 +13,7 @@
       const userId = event.data.userId;
       if (event.type === 'authDetails') {
         if (unityInstance) {
-          unityInstance.SendMessage('GameObjectName', 'ReceiveUserId', userId);
+          unityInstance.SendMessage('GameData', 'SetUserId', userId);
         } else {
           console.log("Unity instance not ready yet");
         }
