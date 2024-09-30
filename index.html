@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <script>
-    function UnityFullyLoaded() {
-      console.log("Unity has finished loading!");
-      // Add any other actions you want to perform when Unity is loaded
+    let unityInstance = null;
+
+    // Now Unity is ready, you can safely send messages to the game
+    window.UnityFullyLoaded = () => {
+      window.parent.postMessage({ type: 'unityReady' }, '*');
     }
+
+    // Send the user ID to Unity from the parent window
+    window.addEventListener('message', (event) => {
+      const userId = event.data.userId;
+      if (event.type === 'authDetails') {
+        if (unityInstance) {
+          unityInstance.SendMessage('GameObjectName', 'ReceiveUserId', userId);
+        } else {
+          console.log("Unity instance not ready yet");
+        }
+      }
+    });
+
   </script>
   <head>
     <meta charset="utf-8">
@@ -46,6 +61,9 @@
         productVersion: "1.0.2",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }).then((instance) => {
+        unityInstance = instance;
+        UnityFullyLoaded();
       });
     </script>
   </body>
