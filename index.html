@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <script>
-    let unityInstance = null;
-
-    // Now Unity is ready, you can safely send messages to the game
-    window.UnityFullyLoaded = () => {
-      window.parent.postMessage({ type: 'unityReady' }, '*');
-    }
-
-    // Send the user ID to Unity from the parent window
-    window.addEventListener('message', (event) => {
-      const userId = event.data.userId;
-      if (event.type === 'authDetails') {
-        if (unityInstance) {
-          unityInstance.SendMessage('GameData', 'SetUserId', userId);
-        } else {
-          console.log("Unity instance not ready yet");
-        }
-      }
-    });
-
-  </script>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | 8BitEvilReturns</title>
+    <title>Unity Web Player | 8BitEvilReturns</title>
   </head>
-  <body style="text-align: center; padding: 0; border: 0; margin: 0; overflow: hidden;">
-    <canvas id="unity-canvas" width=480 height=852 style="width: 480px; height: 852px; background: #231F20"></canvas>
-    <script src="Build/8BitEvilReturnsBuild.loader.js"></script>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <canvas id="unity-canvas" width=480 height=852 tabindex="-1" style="width: 480px; height: 852px; background: #231F20"></canvas>
+    <script src="Build/8BitEvilReturns-WebGLBuild.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -43,27 +22,23 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
-      } else {
-        var canvas = document.querySelector("#unity-canvas");
-        const height = window.innerHeight;
-        canvas.style.height = `${height}px`;
-        canvas.style.width = `${height * (9 / 16)}px`;
-        canvas.style.position = "block";
+
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/8BitEvilReturnsBuild.data",
-        frameworkUrl: "Build/8BitEvilReturnsBuild.framework.js",
-        codeUrl: "Build/8BitEvilReturnsBuild.wasm",
+        arguments: [],
+        dataUrl: "Build/8BitEvilReturns-WebGLBuild.data",
+        frameworkUrl: "Build/8BitEvilReturns-WebGLBuild.framework.js",
+        codeUrl: "Build/8BitEvilReturns-WebGLBuild.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Scareathon",
         productName: "8BitEvilReturns",
         productVersion: "1.0.2",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      }).then((instance) => {
-        unityInstance = instance;
-        UnityFullyLoaded();
+      }).then((unityInstance) => {
+      }).catch((message) => {
+        alert(message);
       });
     </script>
   </body>
