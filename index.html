@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=480 height=852 tabindex="-1" style="width: 480px; height: 852px; background: #231F20"></canvas>
-    <script src="Build/8BitEvilReturns-WebGLBuild.loader.js"></script>
+    <script src="Build/8BitEvilReturns-WebGLBuild-Compressed.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -27,9 +27,9 @@
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
-        dataUrl: "Build/8BitEvilReturns-WebGLBuild.data",
-        frameworkUrl: "Build/8BitEvilReturns-WebGLBuild.framework.js",
-        codeUrl: "Build/8BitEvilReturns-WebGLBuild.wasm",
+        dataUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.data.unityweb",
+        frameworkUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.framework.js.unityweb",
+        codeUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Scareathon",
         productName: "8BitEvilReturns",
