@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0; overflow: hidden;">
     <canvas id="unity-canvas" width=480 height=852 tabindex="-1" style="width: 480px; height: 852px; background: #231F20"></canvas>
-    <script src="Build/8BitEvilReturns-WebGLBuild-Compressed.loader.js"></script>
+    <script src="Build/8BitEvilReturnsBuild.loader.js"></script>
     <script>
       var canvas = document.querySelector("#unity-canvas");
 
@@ -29,6 +29,7 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
+
       } else {
         sizeCanvasToViewport();
         window.addEventListener("resize", sizeCanvasToViewport);
@@ -36,9 +37,9 @@
 
       createUnityInstance(canvas, {
         arguments: [],
-        dataUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.data.unityweb",
-        frameworkUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.framework.js.unityweb",
-        codeUrl: "Build/8BitEvilReturns-WebGLBuild-Compressed.wasm.unityweb",
+        dataUrl: "Build/8BitEvilReturnsBuild.data.unityweb",
+        frameworkUrl: "Build/8BitEvilReturnsBuild.framework.js.unityweb",
+        codeUrl: "Build/8BitEvilReturnsBuild.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Scareathon",
         productName: "8BitEvilReturns",
